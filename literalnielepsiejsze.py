@@ -4,11 +4,12 @@ from tkinter import font as tkfont
 column_number=0
 row_number=0
 column_numberDel=0
+chosen_word=[]
 class Literalnie:
     def __init__(self):
-        self.slowa=["polki","kotki","kotek","chata","jutro","dawaj","ratuj","matka","stary",
+        self.words=["polki","kotki","kotek","chata","jutro","dawaj","ratuj","matka","stary",
                "potem","awans","lotki","katar","kanar","bluza","kajak","pilot","potop"]
-        self.wylosowaneSlowo=random.choice(self.slowa)
+        self.drawnWord=random.choice(self.words)
         self.root=tk.Tk()
         self.root.geometry("600x650")
         self.root.title("Literaki")
@@ -183,30 +184,42 @@ class Literalnie:
         if column_number==1:
             delete_letter(row_number,column_numberDel)
             column_number=0
+            chosen_word.pop()
+            print(chosen_word)
         elif column_number==2:
             column_numberDel=1
             delete_letter(row_number,column_numberDel)
             column_numberDel=0
             column_number=1
+            chosen_word.pop()
+            print(chosen_word)
         elif column_number==3:
             column_numberDel=2
             delete_letter(row_number,column_numberDel)
             column_numberDel=1
             column_number=2
+            chosen_word.pop()
+            print(chosen_word)
         elif column_number==4:
             column_numberDel=3
             delete_letter(row_number,column_numberDel)
             column_numberDel=2
             column_number=3
+            chosen_word.pop()
+            print(chosen_word)
         elif column_number==0:
             row_number-=1
             column_numberDel=4
             delete_letter(row_number,column_numberDel)
             column_numberDel=3
             column_number=4
+            chosen_word.pop()
+            print(chosen_word)
 
     def buttonClicking1(self,letter):
-        global column_number,row_number
+        global column_number,row_number,chosen_word
+        chosen_word.append(letter)
+        print(chosen_word)
         self.letter=tk.Label(self.letterFrames,text=f"{letter}",font=("Arial",16),bg="lightgray")
 
         letter_print=lambda row_num,column_num: self.letter.grid(row=row_num,column=column_num)
