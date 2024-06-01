@@ -4,7 +4,9 @@ from tkinter import font as tkfont
 column_number=0
 row_number=0
 column_numberDel=0
-chosen_word=[]
+row_numberDel=0
+chosen_word=""
+enter=0
 class Literalnie:
     def __init__(self):
         self.words=["polki","kotki","kotek","chata","jutro","dawaj","ratuj","matka","stary",
@@ -154,7 +156,7 @@ class Literalnie:
         self.buttonLetter_L.grid(row=8,column=8,sticky=tk.W+tk.E)
 
         #row4 buttons
-        self.buttonLetter_Enter=tk.Button(self.letterButtons_34row,text="ENTER",width=4,font=("Arial",12),bg="gray")
+        self.buttonLetter_Enter=tk.Button(self.letterButtons_34row,text="ENTER",width=4,font=("Arial",12),bg="gray",command=lambda: self.enterWord())
         self.buttonLetter_Enter.grid(row=9,column=0,sticky=tk.W+tk.E)
         self.buttonLetter_Z=tk.Button(self.letterButtons_34row,text="Z",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Z"))
         self.buttonLetter_Z.grid(row=9,column=1,sticky=tk.W+tk.E)
@@ -177,61 +179,71 @@ class Literalnie:
 
         self.root.mainloop()
     def delete(self):
-        global column_numberDel,column_number,row_number
+        global column_numberDel,column_number,row_number,chosen_word,enter,row_numberDel
         self.deleteFrame=tk.Frame(self.letterFrames,height=40,width=27,bg="lightgray")
 
         delete_letter=lambda row_num,column_num: self.deleteFrame.grid(row=row_num,column=column_num)
         if column_number==1:
-            delete_letter(row_number,column_numberDel)
+            delete_letter(row_numberDel,column_numberDel)
             column_number=0
-            chosen_word.pop()
-            print(chosen_word)
+            chosen_word=chosen_word[:-1]
         elif column_number==2:
             column_numberDel=1
-            delete_letter(row_number,column_numberDel)
+            delete_letter(row_numberDel,column_numberDel)
             column_numberDel=0
             column_number=1
-            chosen_word.pop()
-            print(chosen_word)
+            chosen_word=chosen_word[:-1]
         elif column_number==3:
             column_numberDel=2
-            delete_letter(row_number,column_numberDel)
+            delete_letter(row_numberDel,column_numberDel)
             column_numberDel=1
             column_number=2
-            chosen_word.pop()
-            print(chosen_word)
+            chosen_word=chosen_word[:-1]
         elif column_number==4:
             column_numberDel=3
-            delete_letter(row_number,column_numberDel)
+            delete_letter(row_numberDel,column_numberDel)
             column_numberDel=2
             column_number=3
-            chosen_word.pop()
-            print(chosen_word)
+            chosen_word=chosen_word[:-1]
         elif column_number==0:
-            row_number-=1
             column_numberDel=4
-            delete_letter(row_number,column_numberDel)
+            delete_letter(row_numberDel,column_numberDel)
             column_numberDel=3
             column_number=4
-            chosen_word.pop()
-            print(chosen_word)
+            chosen_word=chosen_word[:-1]
+            enter=0
+        print(chosen_word)
 
     def buttonClicking1(self,letter):
-        global column_number,row_number,chosen_word
-        chosen_word.append(letter)
-        print(chosen_word)
+        global column_number,row_number,chosen_word,enter
         self.letter=tk.Label(self.letterFrames,text=f"{letter}",font=("Arial",16),bg="lightgray")
 
         letter_print=lambda row_num,column_num: self.letter.grid(row=row_num,column=column_num)
-        letter_print(row_number,column_number)
         lit=True
         if column_number==4:
-            row_number+=1
+            letter_print(row_number,column_number)
             column_number=0
-            lit=False
-        if lit:
-            column_number+=1
+            enter=1
+            chosen_word=f"{chosen_word}{letter}"
+        if enter==0:
+            letter_print(row_number,column_number)
+            if column_number==4:
+                row_number+=1
+                column_number=0
+                lit=False
+                chosen_word=f"{chosen_word}{letter}"
+            if lit:
+                column_number+=1
+                chosen_word=f"{chosen_word}{letter}" 
         lit=True
+        print(chosen_word)
+    def enterWord(self):
+        global enter,chosen_word,row_numberDel,row_number
+        row_numberDel+=1
+        row_number+=1
+        enter=0
+        chosen_word=""
+
         
 
 Literalnie()
