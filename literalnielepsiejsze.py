@@ -10,8 +10,8 @@ chosen_word=""
 enter=0
 class Literalnie:
     def __init__(self):
-        self.words=["polki","kotki","kotek","chata","jutro","dawaj","ratuj","matka","stary",
-               "potem","awans","lotki","katar","kanar","bluza","kajak","pilot","potop"]
+        self.words=["POLKI","KOTKI","KOTEK","CHATA","JUTRO","DAWAJ","RATUJ","MATKA","STARY",
+               "POTEM","AWANS","LOTKI","KATAR","KANAR","BLUZA","KAJAK","PILOT","POTOP","KARTY"]
         self.drawnWord=random.choice(self.words)
         print(self.drawnWord)
         self.root=tk.Tk()
@@ -228,16 +228,18 @@ class Literalnie:
             chosen_word=f"{chosen_word}{letter}" 
         print(chosen_word)
     def enterWord(self):
-        global enter,chosen_word,row_number,column_number,good_column_number
-        column_number=0
-        enter=0
-        good_letter=tk.Frame(self.letterFrames,height=40,width=27,bg="#80FF00")
-        good_letter_print=lambda row_num,column_num: good_letter.grid(row=row_num,column=column_num)
-        for i in range(5):
-            if chosen_word[i]==self.drawnWord[i]:
-                good_letter_print(row_number,good_column_number)
-                good_column_number+=1
-        row_number+=1
-        chosen_word=""
+        global enter,chosen_word,row_number,column_number
+        if column_number==5:
+            column_number=0
+            enter=0
+            good_letter=tk.Frame(self.letterFrames,height=40,width=27,bg="#80FF00")
+            good_letter_print=lambda row_num,column_num: good_letter.grid(row=row_num,column=column_num)
+            chosen_word_atleastOnce=list(filter(lambda chosen: chosen==self.drawnWord[0],chosen_word))
+            print(chosen_word_atleastOnce)
+            for i in range(5):
+                if chosen_word[i]==self.drawnWord[i]:
+                    good_letter_print(row_number,i)
+            row_number+=1
+            chosen_word=""
 
 Literalnie()
