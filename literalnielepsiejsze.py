@@ -232,13 +232,15 @@ class Literalnie:
         if column_number==5:
             column_number=0
             enter=0
-            good_letter=tk.Frame(self.letterFrames,height=40,width=27,bg="#80FF00")
-            good_letter_print=lambda row_num,column_num: good_letter.grid(row=row_num,column=column_num)
-            chosen_word_atleastOnce=list(filter(lambda chosen: chosen==self.drawnWord[0],chosen_word))
-            print(chosen_word_atleastOnce)
+            for i in range(5):
+                chosen_word_atleastOnce=list(filter(lambda drawn_word:drawn_word==chosen_word[i],self.drawnWord))
+                print(chosen_word_atleastOnce,end="")
             for i in range(5):
                 if chosen_word[i]==self.drawnWord[i]:
-                    good_letter_print(row_number,i)
+                    good_letter=tk.Frame(self.letterFrames,height=40,width=27,bg="#80FF00")
+                    good_letter.grid(row=row_number,column=i)
+                    letter=tk.Label(self.letterFrames,text=f"{chosen_word[i]}",font=("Arial",16),bg="#80FF00")
+                    letter.grid(row=row_number,column=i)
             row_number+=1
             chosen_word=""
 
