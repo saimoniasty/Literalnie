@@ -1,8 +1,7 @@
 import random
 import tkinter as tk
 from tkinter import font as tkfont
-good_column_number=0
-good_row_number=0
+chosen_word_atleastOnce=list()
 column_number=0
 row_number=0
 column_numberDel=0
@@ -13,7 +12,6 @@ class Literalnie:
         self.words=["POLKI","KOTKI","KOTEK","CHATA","JUTRO","DAWAJ","RATUJ","MATKA","STARY",
                "POTEM","AWANS","LOTKI","KATAR","KANAR","BLUZA","KAJAK","PILOT","POTOP","KARTY"]
         self.drawnWord=random.choice(self.words)
-        print(self.drawnWord)
         self.root=tk.Tk()
         self.root.geometry("600x650")
         self.root.title("Literaki")
@@ -93,47 +91,47 @@ class Literalnie:
 
         #row1 buttons
         self.buttonLetter_Ą=tk.Button(self.letterButtons_1row,text="Ą",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Ą"))
-        self.buttonLetter_Ą.grid(row=8,column=0,sticky=tk.W+tk.E)
+        self.buttonLetter_Ą.grid(row=6,column=0,sticky=tk.W+tk.E)
         self.buttonLetter_Ć=tk.Button(self.letterButtons_1row,text="Ć",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Ć"))
-        self.buttonLetter_Ć.grid(row=8,column=1,sticky=tk.W+tk.E)
+        self.buttonLetter_Ć.grid(row=6,column=1,sticky=tk.W+tk.E)
         self.buttonLetter_Ę=tk.Button(self.letterButtons_1row,text="Ę",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Ę"))
-        self.buttonLetter_Ę.grid(row=8,column=2,sticky=tk.W+tk.E)
+        self.buttonLetter_Ę.grid(row=6,column=2,sticky=tk.W+tk.E)
         self.buttonLetter_Ł=tk.Button(self.letterButtons_1row,text="Ł",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Ł"))
-        self.buttonLetter_Ł.grid(row=8,column=3,sticky=tk.W+tk.E)
+        self.buttonLetter_Ł.grid(row=6,column=3,sticky=tk.W+tk.E)
         self.buttonLetter_Ó=tk.Button(self.letterButtons_1row,text="Ó",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Ó"))
-        self.buttonLetter_Ó.grid(row=8,column=4,sticky=tk.W+tk.E)
+        self.buttonLetter_Ó.grid(row=6,column=4,sticky=tk.W+tk.E)
         self.buttonLetter_Ś=tk.Button(self.letterButtons_1row,text="Ś",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Ś"))
-        self.buttonLetter_Ś.grid(row=8,column=5,sticky=tk.W+tk.E)
+        self.buttonLetter_Ś.grid(row=6,column=5,sticky=tk.W+tk.E)
         self.buttonLetter_Ń=tk.Button(self.letterButtons_1row,text="Ń",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Ń"))
-        self.buttonLetter_Ń.grid(row=8,column=6,sticky=tk.W+tk.E)
+        self.buttonLetter_Ń.grid(row=6,column=6,sticky=tk.W+tk.E)
         self.buttonLetter_Ż=tk.Button(self.letterButtons_1row,text="Ż",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Ż"))
-        self.buttonLetter_Ż.grid(row=8,column=7,sticky=tk.W+tk.E)
+        self.buttonLetter_Ż.grid(row=6,column=7,sticky=tk.W+tk.E)
         self.buttonLetter_Ź=tk.Button(self.letterButtons_1row,text="Ź",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Ź"))
-        self.buttonLetter_Ź.grid(row=8,column=8,sticky=tk.W+tk.E)
+        self.buttonLetter_Ź.grid(row=6,column=8,sticky=tk.W+tk.E)
 
         self.letterButtons_1row.pack(fill="x")
 
         #row2 buttons
         self.buttonLetter_Q=tk.Button(self.letterButtons_2row,text="Q",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Q"))
-        self.buttonLetter_Q.grid(row=8,column=0,sticky=tk.W+tk.E)
+        self.buttonLetter_Q.grid(row=7,column=0,sticky=tk.W+tk.E)
         self.buttonLetter_W=tk.Button(self.letterButtons_2row,text="W",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("W"))
-        self.buttonLetter_W.grid(row=8,column=1,sticky=tk.W+tk.E)
+        self.buttonLetter_W.grid(row=7,column=1,sticky=tk.W+tk.E)
         self.buttonLetter_E=tk.Button(self.letterButtons_2row,text="E",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("E"))
-        self.buttonLetter_E.grid(row=8,column=2,sticky=tk.W+tk.E)
+        self.buttonLetter_E.grid(row=7,column=2,sticky=tk.W+tk.E)
         self.buttonLetter_R=tk.Button(self.letterButtons_2row,text="R",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("R"))
-        self.buttonLetter_R.grid(row=8,column=3,sticky=tk.W+tk.E)
+        self.buttonLetter_R.grid(row=7,column=3,sticky=tk.W+tk.E)
         self.buttonLetter_T=tk.Button(self.letterButtons_2row,text="T",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("T"))
-        self.buttonLetter_T.grid(row=8,column=4,sticky=tk.W+tk.E)
+        self.buttonLetter_T.grid(row=7,column=4,sticky=tk.W+tk.E)
         self.buttonLetter_Y=tk.Button(self.letterButtons_2row,text="Y",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("Y"))
-        self.buttonLetter_Y.grid(row=8,column=5,sticky=tk.W+tk.E)
+        self.buttonLetter_Y.grid(row=7,column=5,sticky=tk.W+tk.E)
         self.buttonLetter_U=tk.Button(self.letterButtons_2row,text="U",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("U"))
-        self.buttonLetter_U.grid(row=8,column=6,sticky=tk.W+tk.E)
+        self.buttonLetter_U.grid(row=7,column=6,sticky=tk.W+tk.E)
         self.buttonLetter_I=tk.Button(self.letterButtons_2row,text="I",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("I"))
-        self.buttonLetter_I.grid(row=8,column=7,sticky=tk.W+tk.E)
+        self.buttonLetter_I.grid(row=7,column=7,sticky=tk.W+tk.E)
         self.buttonLetter_O=tk.Button(self.letterButtons_2row,text="O",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("O"))
-        self.buttonLetter_O.grid(row=8,column=8,sticky=tk.W+tk.E)
+        self.buttonLetter_O.grid(row=7,column=8,sticky=tk.W+tk.E)
         self.buttonLetter_P=tk.Button(self.letterButtons_2row,text="P",font=("Arial",12),bg="gray",command=lambda: self.buttonClicking1("P"))
-        self.buttonLetter_P.grid(row=8,column=9,sticky=tk.W+tk.E)
+        self.buttonLetter_P.grid(row=7,column=9,sticky=tk.W+tk.E)
 
         self.letterButtons_2row.pack(fill="x")
 
@@ -214,33 +212,44 @@ class Literalnie:
             column_number=4
             enter=0
             chosen_word=chosen_word[:-1]
-        print(chosen_word)
 
     def buttonClicking1(self,letter):
         global column_number,row_number,chosen_word,enter
         chosen_letter=tk.Label(self.letterFrames,text=f"{letter}",font=("Arial",16),bg="lightgray")
         letter_print=lambda row_num,column_num: chosen_letter.grid(row=row_num,column=column_num)
-        if column_number==5:
-            enter=1
-        if enter==0:
-            letter_print(row_number,column_number)
-            column_number+=1
-            chosen_word=f"{chosen_word}{letter}" 
-        print(chosen_word)
+        if row_number<6:
+            if column_number==5:
+                enter=1
+            if enter==0:
+                letter_print(row_number,column_number)
+                column_number+=1
+                chosen_word=f"{chosen_word}{letter}" 
     def enterWord(self):
-        global enter,chosen_word,row_number,column_number
+        global enter,chosen_word,row_number,column_number,chosen_word_atleastOnce
+        if row_number>5:
+            exit
         if column_number==5:
             column_number=0
             enter=0
             for i in range(5):
                 chosen_word_atleastOnce=list(filter(lambda drawn_word:drawn_word==chosen_word[i],self.drawnWord))
-                print(chosen_word_atleastOnce,end="")
-            for i in range(5):
                 if chosen_word[i]==self.drawnWord[i]:
                     good_letter=tk.Frame(self.letterFrames,height=40,width=27,bg="#80FF00")
                     good_letter.grid(row=row_number,column=i)
                     letter=tk.Label(self.letterFrames,text=f"{chosen_word[i]}",font=("Arial",16),bg="#80FF00")
                     letter.grid(row=row_number,column=i)
+                if chosen_word[i]!=self.drawnWord[i]:
+                    try:
+                        if chosen_word_atleastOnce[0]==chosen_word_atleastOnce[0]:
+                            good_letter_badPlace=tk.Frame(self.letterFrames,height=40,width=27,bg="yellow")
+                            good_letter_badPlace.grid(row=row_number,column=i)
+                            letter_goodbad=tk.Label(self.letterFrames,text=f"{chosen_word[i]}",font=("Arial",16),bg="yellow")
+                            letter_goodbad.grid(row=row_number,column=i)
+                    except IndexError:
+                        bad_letter=tk.Frame(self.letterFrames,height=40,width=27,bg="gray")
+                        bad_letter.grid(row=row_number,column=i)
+                        letter_bad=tk.Label(self.letterFrames,text=f"{chosen_word[i]}",font=("Arial",16),bg="gray")
+                        letter_bad.grid(row=row_number,column=i)
             row_number+=1
             chosen_word=""
 
