@@ -7,11 +7,13 @@ row_number=0
 column_numberDel=0
 chosen_word=""
 enter=0
+good_word=0
 class Literalnie:
     def __init__(self):
         self.words=["POLKI","KOTKI","KOTEK","CHATA","JUTRO","DAWAJ","RATUJ","MATKA","STARY",
                "POTEM","AWANS","LOTKI","KATAR","KANAR","BLUZA","KAJAK","PILOT","POTOP","KARTY"]
         self.drawnWord=random.choice(self.words)
+        print(self.drawnWord)
         self.root=tk.Tk()
         self.root.geometry("600x650")
         self.root.title("Literaki")
@@ -214,43 +216,47 @@ class Literalnie:
             chosen_word=chosen_word[:-1]
 
     def buttonClicking1(self,letter):
-        global column_number,row_number,chosen_word,enter
+        global column_number,row_number,chosen_word,enter,good_word
         chosen_letter=tk.Label(self.letterFrames,text=f"{letter}",font=("Arial",16),bg="lightgray")
         letter_print=lambda row_num,column_num: chosen_letter.grid(row=row_num,column=column_num)
-        if row_number<6:
-            if column_number==5:
-                enter=1
-            if enter==0:
-                letter_print(row_number,column_number)
-                column_number+=1
-                chosen_word=f"{chosen_word}{letter}" 
+        if good_word<5:
+            if row_number<6:
+                if column_number==5:
+                    enter=1
+                if enter==0:
+                    letter_print(row_number,column_number)
+                    column_number+=1
+                    chosen_word=f"{chosen_word}{letter}" 
     def enterWord(self):
-        global enter,chosen_word,row_number,column_number,chosen_word_atleastOnce
-        if row_number>5:
-            exit
-        if column_number==5:
-            column_number=0
-            enter=0
-            for i in range(5):
-                chosen_word_atleastOnce=list(filter(lambda drawn_word:drawn_word==chosen_word[i],self.drawnWord))
-                if chosen_word[i]==self.drawnWord[i]:
-                    good_letter=tk.Frame(self.letterFrames,height=40,width=27,bg="#80FF00")
-                    good_letter.grid(row=row_number,column=i)
-                    letter=tk.Label(self.letterFrames,text=f"{chosen_word[i]}",font=("Arial",16),bg="#80FF00")
-                    letter.grid(row=row_number,column=i)
-                if chosen_word[i]!=self.drawnWord[i]:
-                    try:
-                        if chosen_word_atleastOnce[0]==chosen_word_atleastOnce[0]:
-                            good_letter_badPlace=tk.Frame(self.letterFrames,height=40,width=27,bg="yellow")
-                            good_letter_badPlace.grid(row=row_number,column=i)
-                            letter_goodbad=tk.Label(self.letterFrames,text=f"{chosen_word[i]}",font=("Arial",16),bg="yellow")
-                            letter_goodbad.grid(row=row_number,column=i)
-                    except IndexError:
-                        bad_letter=tk.Frame(self.letterFrames,height=40,width=27,bg="gray")
-                        bad_letter.grid(row=row_number,column=i)
-                        letter_bad=tk.Label(self.letterFrames,text=f"{chosen_word[i]}",font=("Arial",16),bg="gray")
-                        letter_bad.grid(row=row_number,column=i)
-            row_number+=1
-            chosen_word=""
-
+        global enter,chosen_word,row_number,column_number,chosen_word_atleastOnce,good_word
+        if good_word<5:
+            if row_number>5:
+                self.root.destroy()
+            if column_number==5:
+                column_number=0
+                enter=0
+                for i in range(5):
+                    chosen_word_atleastOnce=list(filter(lambda drawn_word:drawn_word==chosen_word[i],self.drawnWord))
+                    if chosen_word[i]==self.drawnWord[i]:
+                        good_letter=tk.Frame(self.letterFrames,height=40,width=27,bg="#80FF00")
+                        good_letter.grid(row=row_number,column=i)
+                        letter=tk.Label(self.letterFrames,text=f"{chosen_word[i]}",font=("Arial",16),bg="#80FF00")
+                        letter.grid(row=row_number,column=i)
+                        good_word+=1
+                    if chosen_word[i]!=self.drawnWord[i]:
+                        try:
+                            if chosen_word_atleastOnce[0]==chosen_word_atleastOnce[0]:
+                                good_letter_badPlace=tk.Frame(self.letterFrames,height=40,width=27,bg="yellow")
+                                good_letter_badPlace.grid(row=row_number,column=i)
+                                letter_goodbad=tk.Label(self.letterFrames,text=f"{chosen_word[i]}",font=("Arial",16),bg="yellow")
+                                letter_goodbad.grid(row=row_number,column=i)
+                        except IndexError:
+                            bad_letter=tk.Frame(self.letterFrames,height=40,width=27,bg="gray")
+                            bad_letter.grid(row=row_number,column=i)
+                            letter_bad=tk.Label(self.letterFrames,text=f"{chosen_word[i]}",font=("Arial",16),bg="gray")
+                            letter_bad.grid(row=row_number,column=i)
+                row_number+=1
+                chosen_word=""
+        else:
+            self.root.destroy()
 Literalnie()
