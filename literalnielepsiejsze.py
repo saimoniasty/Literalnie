@@ -1,5 +1,6 @@
 import random
 import tkinter as tk
+from tkinter import messagebox
 from tkinter import font as tkfont
 chosen_word_atleastOnce=list()
 column_number=0
@@ -230,8 +231,9 @@ class Literalnie:
     def enterWord(self):
         global enter,chosen_word,row_number,column_number,chosen_word_atleastOnce,good_word
         if good_word<5:
-            if row_number>5:
-                self.root.destroy()
+            if row_number==5:
+                self.root.quit()
+                messagebox.showinfo("Loser message", "YOU LOSE AT LITERAKI 2.0")
             if column_number==5:
                 column_number=0
                 enter=0
@@ -257,6 +259,7 @@ class Literalnie:
                             letter_bad.grid(row=row_number,column=i)
                 row_number+=1
                 chosen_word=""
-        else:
-            self.root.destroy()
+        if good_word==5:
+            self.root.quit()
+            messagebox.showinfo("Winner message", "YOU WON LITERAKI 2.0")
 Literalnie()
