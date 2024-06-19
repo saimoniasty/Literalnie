@@ -9,6 +9,7 @@ column_numberDel=0
 chosen_word=""
 enter=0
 good_word=0
+#Zrobiłem w klasie bo w sumie nw chciałem zobaczyć czy umiem w klasach czy coś
 class Literalnie:
     def __init__(self):
         self.words=["POLKI","KOTKI","KOTEK","CHATA","JUTRO","DAWAJ","RATUJ","MATKA","STARY",
