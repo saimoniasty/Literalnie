@@ -15,7 +15,6 @@ class Literalnie:
         self.words=["POLKI","KOTKI","KOTEK","CHATA","JUTRO","DAWAJ","RATUJ","MATKA","STARY",
                "POTEM","AWANS","LOTKI","KATAR","KANAR","BLUZA","KAJAK","PILOT","POTOP","KARTY"]
         self.drawnWord=random.choice(self.words)
-        print(self.drawnWord)
         self.root=tk.Tk()
         self.root.geometry("600x650")
         self.root.title("Literaki")
